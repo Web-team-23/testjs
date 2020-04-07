@@ -5,17 +5,18 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-/** HomeController
+/** TestController
  * 
+ * @Route("/test", name="test_")
  */
-class HomeController extends AbstractController
+class TestController extends AbstractController
 {
-    /** home
+    /** testHome
      * 
      * @Route("/", name="home")
      */
-    public function home()
+    public function testHome()
     {
-        return $this->render('home.html.twig');
+        return $this->render('test/home.html.twig');
     }
 }
