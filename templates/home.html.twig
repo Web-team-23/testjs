@@ -3,9 +3,19 @@
 {% block title %}{{ 'Test Js' }}{% endblock %}
 
 {% block body %}
-    <div>
-        <h1>{{ 'Test Js' }}</h1>
-        <br>
-        <a href="{{ path('test_home') }}">{{ 'Test Code' }}</a>
+    <div class="row">
+        <div class="col-6">
+            <h1>{{ 'Test Js' }}</h1>
+            <a class="btn btn-sm btn-outline-primary" href="{{ path('test_home') }}">{{ 'Test Home' }}</a>
+            <br><br>
+            <a class="btn btn-sm btn-danger" href="#">{{ 'Test 1' }}</a>
+            <a class="btn btn-sm btn-success" href="#">{{ 'Test 2' }}</a>
+            <a class="btn btn-sm btn-info" href="#">{{ 'Test 3' }}</a>
+            <a class="btn btn-sm btn-warning" href="#">{{ 'Test 4' }}</a>
+            <a class="btn btn-sm btn-light" href="#">{{ 'Test 5' }}</a>
+            <a class="btn btn-sm btn-dark" href="#">{{ 'Test 6' }}</a>
+            <a class="btn btn-sm btn-outline-danger" href="#">{{ 'Test 7' }}</a>
+            <a class="btn btn-sm btn-link" href="#">{{ 'Test 8' }}</a>
+        </div>
     </div>
 {% endblock %}
