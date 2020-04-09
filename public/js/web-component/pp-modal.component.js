@@ -7,7 +7,9 @@ class Modal extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
+       
         <style>
+@import "../../css/bootstrap.css";
             /* The Modal (background) */
             .modal {
                 display: none; 
@@ -62,14 +64,17 @@ class Modal extends HTMLElement {
             background-color: #000066;
             color: white;
             }
-            .modal-body {padding: 2px 16px; margin: 20px 2px}
+            .modal-body {
+            padding: 2px 16px; 
+            margin: 20px 2px;
+            }
         </style>
-        <button>Open Modal</button>
+        <button class="btn btn-sm btn-info">Open Modal</button>
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <slot name="header"><h1>Default text</h1></slot>
+                <slot name="header"><h1>Default text</h1></slot>
+                <span class="close">&times;</span>                  
                 </div>
                 <div class="modal-body">               
                 </div>
