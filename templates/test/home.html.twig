@@ -9,4 +9,32 @@
             <a class="btn btn-sm btn-outline-primary" href="{{ path('home') }}">{{ 'Home' }}</a>
         </div>
     </div>
+    <div class="row">
+        <div class="col-2">
+            <span>Web component Modal : </span>
+            <pp-modal content="projects">
+                <h1 slot="header">Information Box</h1>
+            </pp-modal>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <span>Web component Multi select : </span>
+            <multi-input>
+                <input list="speakers">
+                <datalist id="speakers">
+                    <option value="option1"></option>
+                    <option value="option2"></option>
+                    <option value="option3"></option>
+                    <option value="option4"></option>
+                </datalist>
+            </multi-input>
+            <button class="btn btn-success btn-sm ml-2" id="get">Get values</button>
+            <span id="values"></span>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/web-component/pp-modal.component.js') }}"></script>
+    <script src="{{ asset('js/web-component/multi-input.component.js') }}"></script>
 {% endblock %}

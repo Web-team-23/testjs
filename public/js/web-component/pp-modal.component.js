@@ -1,15 +1,13 @@
 
-class Modal extends HTMLElement {
+customElements.define('pp-modal', class Modal extends HTMLElement {
     constructor() {
         super();
         this._modalVisible = false;
         this._modal;
-
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-       
+        this.shadowRoot.innerHTML = `     
         <style>
-@import "../../css/bootstrap.css";
+        @import "../../css/bootstrap.css";
             /* The Modal (background) */
             .modal {
                 display: none; 
@@ -116,5 +114,4 @@ class Modal extends HTMLElement {
         this._modalVisible = false;
         this._modal.style.display = 'none';
     }
-}
-customElements.define('pp-modal',Modal);
+});
