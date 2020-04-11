@@ -3,16 +3,17 @@
 {% block title %}{{ 'Test Js' }}{% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row p-3">
         <div class="col-6">
-            <a class="btn btn-sm btn-danger" href="{{ path('sandbox') }}">{{ 'Zone JS' }}</a>
-            <a class="btn btn-sm btn-success" href="{{ path('admin') }}">{{ 'Admin' }}</a>
-            <a class="btn btn-sm btn-info" href="{{ path('test_home') }}">{{ 'Test Home' }}</a>
-            <a class="btn btn-sm btn-warning" href="#">{{ 'Test 4' }}</a>
-            <a class="btn btn-sm btn-light" href="#">{{ 'Test 5' }}</a>
-            <a class="btn btn-sm btn-dark" href="#">{{ 'Test 6' }}</a>
-            <a class="btn btn-sm btn-outline-danger" href="#">{{ 'Test 7' }}</a>
-            <a class="btn btn-sm btn-link" href="#">{{ 'Test 8' }}</a>
+            <a class="btn btn-sm btn-warning" href="{{ path('test_home') }}">{{ 'Test Home' }}</a>
+        </div>
+        <div class="col-6">
+            <a class="btn btn-sm btn-danger" href="{{ path('admin') }}">{{ 'Admin' }}</a>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6">
+            <a class="btn btn-sm btn-info" href="{{ path('sandbox') }}">{{ 'Zone JS' }}</a>
         </div>
     </div>
 {% endblock %}
