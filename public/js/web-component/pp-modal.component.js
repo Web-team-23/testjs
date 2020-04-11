@@ -3,11 +3,8 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
     constructor() {
         super();
         this._modalVisible = false;
-        this._modal;
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `     
+        this.innerHTML = `     
         <style>
-        @import "../../css/bootstrap.css";
             /* The Modal (background) */
             .modal {
                 display: none; 
@@ -19,12 +16,10 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
                 width: 100%; 
                 height: 100%; 
                 overflow: auto; 
-                background-color: rgba(0,0,0,0.4); 
             }
-            /* Modal Content */
+            /*!* Modal Content *!*/
             .modal-content {
                 position: relative;
-                background-color: #fefefe;
                 margin: auto;
                 padding: 0;
                 border: 1px solid #888;
@@ -35,7 +30,7 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
                 animation-name: animatetop;
                 animation-duration: 0.4s
             }
-            /* Add Animation */
+            /*!* Add Animation *!*/
             @-webkit-keyframes animatetop {
                 from {top:-300px; opacity:0} 
                 to {top:0; opacity:1}
@@ -46,7 +41,7 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
             }
             /* The Close Button */
             .close {
-                color: white;
+                color: #636363;
                 float: right;
                 font-size: 28px;
                 font-weight: bold;
@@ -59,8 +54,6 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
             }
             .modal-header {
             padding: 2px 16px;
-            background-color: #000066;
-            color: white;
             }
             .modal-body {
             padding: 2px 16px; 
@@ -71,7 +64,7 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                <slot name="header"><h1>Default text</h1></slot>
+                <slot name="header"><h4>Information modal</h4></slot>
                 <span class="close">&times;</span>                  
                 </div>
                 <div class="modal-body">               
@@ -88,14 +81,14 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
         return this._content;
     }
     connectedCallback() {
-        this._modal = this.shadowRoot.querySelector(".modal");
+        this._modal = this.querySelector(".modal");
         this._content = this.getAttribute('content');
-        this.shadowRoot.querySelector("button").addEventListener('click', this._showModal.bind(this));
-        this.shadowRoot.querySelector(".close").addEventListener('click', this._hideModal.bind(this));
+        this.querySelector("button").addEventListener('click', this._showModal.bind(this));
+        this.querySelector(".close").addEventListener('click', this._hideModal.bind(this));
     }
     disconnectedCallback() {
-        this.shadowRoot.querySelector("button").removeEventListener('click', this._showModal);
-        this.shadowRoot.querySelector(".close").removeEventListener('click', this._hideModal);
+        this.querySelector("button").removeEventListener('click', this._showModal);
+        this.querySelector(".close").removeEventListener('click', this._hideModal);
     }
     static get observedAttributes() {
         return ['content'];
@@ -106,7 +99,7 @@ customElements.define('pp-modal', class Modal extends HTMLElement {
         }
     }
     _showModal() {
-        this.shadowRoot.querySelector(".modal-body").innerHTML=this._content;
+        this.querySelector(".modal-body").innerHTML=this._content;
         this._modalVisible = true;
         this._modal.style.display = 'block';
     }

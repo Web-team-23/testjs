@@ -2,52 +2,50 @@ customElements.define('multi-input', class MultiInputComponent extends HTMLEleme
     constructor() {
         super();
         this.innerHTML +=
-            `<style>
-    multi-input{
-          border: 1px solid grey;
-    }
-    multi-input div.item::after {
-      color: #790001;
-      content: '×';
-      cursor: pointer;
-      font-size: 18px;
-      pointer-events: auto;
-      padding: 0.2em;
-      margin-left: 0.1em;
-    }
-    </style>`;
+        `<style>
+        multi-input{
+              border: 1px solid grey;
+        }
+        multi-input div.item::after {
+          color: #790001;
+          content: '×';
+          cursor: pointer;
+          font-size: 18px;
+          pointer-events: auto;
+          padding: 0.2em;
+          margin-left: 0.1em;
+        }
+        </style>`;
         this._shadowRoot = this.attachShadow({mode: 'open'});
         this._shadowRoot.innerHTML =
-    `<style>
-    :host {
-      display: block;
-      overflow: hidden;
-      padding: 5px;
-    }
-    /* NB use of pointer-events to only allow events from the × icon */
-    ::slotted(div.item) {
-      background-color:  #dedede;
-      border-radius: 2px;
-      color: #222;
-      display: inline-block;
-      font-size:13px;
-      margin: 5px;
-      padding: 2px 25px 2px 5px;
-      pointer-events: none;
-      position: relative;
-      top: -1px;
-    }
-    /* NB pointer-events: none above */
-    ::slotted(div.item:hover) {
-      background-color: rgba(174,191,238,0.65);
-    }
-    ::slotted(input) {
-      border: none;
-      font-size: 12px;
-      outline: none;
-    }
-    </style>
-    <slot></slot>`;
+        `<style>
+        :host {
+          display: block;
+          overflow: hidden;
+          padding: 5px;
+        }
+        ::slotted(div.item) {
+          background-color:  #dedede;
+          border-radius: 2px;
+          color: #222;
+          display: inline-block;
+          font-size:13px;
+          margin: 5px;
+          padding: 2px 25px 2px 5px;
+          pointer-events: none;
+          position: relative;
+          top: -1px;
+        }
+        ::slotted(div.item:hover) {
+          background-color: rgba(174,191,238,0.65);
+        }
+        ::slotted(input) {
+          border: none;
+          font-size: 12px;
+          outline: none;
+        }
+        </style>
+        <slot></slot>`;
 
         this._datalist = this.querySelector('datalist');
         this._allowedValues = [];
