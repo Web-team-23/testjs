@@ -52,8 +52,8 @@ export  default class MultiSelect2{
     return this._config.options.map(_option => {
       const option = new Element("div", {
         class: "multi-select__option",
-        value: _option.value,
-        textContent: _option.label,
+        value: _option.id,
+        textContent: _option.name,
         disabled: _option.disabled,
         info: _option.info,
         action: _option.action
@@ -80,6 +80,7 @@ export  default class MultiSelect2{
 
       if (option) {
         this._setValue(option.get().getAttribute("data-value"), true);
+
       }
 
       this._select.removeClass("multi-select__select--opened");
@@ -128,6 +129,7 @@ export  default class MultiSelect2{
     if (this._config.multiple) {
       const options = this._config.value.map(_value => {
         const option = this._config.options.find(_option => _option.value === _value);
+
         const optionNode = this._options.find(
           _option => _option.get().getAttribute("data-value") === option.value.toString()
         );
@@ -162,7 +164,7 @@ export  default class MultiSelect2{
   _selectOption(option, manual) {
     this._selectedOption = option;
 
-    this._selected_value.setText(option.label);
+    this._selected_value.setText(option.name);
 
     if (this._config.onChange && manual) {
       this._config.onChange(option.value);
@@ -175,11 +177,11 @@ export  default class MultiSelect2{
     this._icons = options.map(_option => {
       const selectedLabel = new Element("span", {
         class: "multi-select__selected-label",
-        textContent: _option.label,
+        textContent: _option.name,
       });
       const icon = new Element("i", {
         class: this._config.icon,
-        value: _option.value,
+        value: _option.id,
       });
 
       selectedLabel.append(icon.get());
