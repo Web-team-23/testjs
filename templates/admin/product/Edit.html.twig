@@ -1,0 +1,43 @@
+﻿{% extends 'base-admin.html.twig' %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    Editer un produit
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.description) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.image) }}
+                        </div>
+                        <p style="font-size: 10px;color: red;">ne pas modifier si il y a deja une image sélectionnée dans la liste, faire la modif dans l'admin image</p>
+                        <div class="col-6">
+                            {{ form_row(form.tags) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.cart) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.createdAt) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="container mb-4 mt-4 text-center">
+                    <div class="col-12">
+                        <button class="btn btn-primary btn-sm">Enregistrer</button>
+                        <a class="btn btn-primary btn-sm" href="{{ path('product_list') }}">Annuler</a>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

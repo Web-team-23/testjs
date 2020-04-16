@@ -1,0 +1,33 @@
+﻿{% extends 'base-admin.html.twig' %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    Editer une image
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.createdAt) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.product) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="container mb-4 mt-4 text-center">
+                    <div class="col-12">
+                        <button class="btn btn-primary btn-sm">Enregistrer</button>
+                        <a class="btn btn-primary btn-sm" href="{{ path('image_list') }}">Annuler</a>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
