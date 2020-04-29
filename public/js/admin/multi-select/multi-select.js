@@ -1,5 +1,4 @@
-import DomHelper from './dom-component.js';
-
+﻿import DomHelper from './dom-component.js';
 
 const d = document;
 const defaults = {
@@ -13,6 +12,7 @@ const defaults = {
     placeholder: 'Select items',
     more: '(+{X} more)'
 };
+
 export default class MultiSelect extends DomHelper {
     constructor(element, options = {}) {
 

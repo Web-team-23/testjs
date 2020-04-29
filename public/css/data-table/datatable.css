@@ -1,0 +1,32 @@
+﻿
+.table-head th[order="sb"]:after{
+      content: '▲';
+    }
+.table-head th[order="bs"]:after{
+      content: '▼';
+    }
+
+table {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    width: 100%;
+}
+table td {
+    border-top: 1px solid grey;
+    padding: 0.5em;
+}
+table th {
+    padding: 0.5em;
+    text-align: left;
+    color: #424242;
+    background-color: rgba(73, 191, 145, 0.55);
+}
+table tbody tr:hover {
+    cursor: pointer;
+    background-color: rgba(107, 111, 105, 0.41);
+}
+input {
+    width: 50%;
+    margin-bottom: 1em;
+    outline: none;
+}

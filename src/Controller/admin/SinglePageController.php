@@ -8,6 +8,7 @@ use App\Repository\ProductRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -32,22 +33,6 @@ class SinglePageController extends AbstractController
       'products' => $products
     ]);
     return $this->json(['view' => $view]);
-  }
-
-  /**
-   * @Route("/admin/apiTag", name="api_tag")
-   * @param TagRepository $tagRepository
-   * @return JsonResponse
-   */
-  public function apiProd(TagRepository $tagRepository)
-  {
-    $tags = $tagRepository->findAll();
-    $encoders = [new JsonEncoder()];
-    $normalizers = [new ObjectNormalizer()];
-    $serializer = new Serializer($normalizers, $encoders);
-    $jsonObject = $serializer->serialize($tags, 'json', ['ignored_attributes' => ['products','createdAt']]);
-
-   return $this->json([$jsonObject], 200);
   }
 
   /**
@@ -91,5 +76,7 @@ class SinglePageController extends AbstractController
     ]);
     return $this->json(['view' => $view]);
   }
+
+
 
 }

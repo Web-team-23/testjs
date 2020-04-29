@@ -1,4 +1,4 @@
-const d = document;
+﻿const d = document;
 
 export default class DomComponent {
     constructor(element, options = {}, defaults = {}) {

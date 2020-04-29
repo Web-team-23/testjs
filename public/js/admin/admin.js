@@ -1,5 +1,4 @@
-﻿
-document.querySelectorAll('.nav-link.admin').forEach(function (link) {
+﻿document.querySelectorAll('.nav-link.admin').forEach(function (link) {
     link.addEventListener('click', function (event) {
         event.preventDefault();
         const route = 'admin/' + this.getAttribute('href');

@@ -1,7 +1,7 @@
-﻿import MultiSelect from "../multi-select2/multi-select.js";
+﻿import MultiSelect from "./multi-select/multi-select.js";
 
 const multiSelect = (function () {
-    const route = '/admin/apiTag';
+    const route = '/admin/api/tag';
     const createComponent = async function () {
         try {
             let response = await fetch(route);
@@ -21,4 +21,6 @@ const multiSelect = (function () {
     };
     return createComponent();
 })();
+
+
 export default multiSelect;
