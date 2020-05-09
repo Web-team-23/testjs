@@ -29,7 +29,7 @@ class Tag
   private $createdAt;
 
   /**
-   * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="tags")
+   * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="tags", cascade={"persist"})
    */
   private $products;
 
@@ -95,4 +95,9 @@ class Tag
 
     return $this;
   }
+  public function __toString()
+  {
+    return $this->name;
+  }
+
 }

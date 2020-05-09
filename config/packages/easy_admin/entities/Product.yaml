@@ -1,0 +1,30 @@
+easy_admin:
+  entities:
+    Product:
+      class: App\Entity\Product
+      list:
+
+        title: "All products"
+        collapse_actions: true
+        actions: ['show','edit','delete']
+        fields: ['id','name','description', 'tags' , {property: 'image', type: 'image', base_path: '%app.path.product_images%' }, 'cart']
+        filters: ['tags', 'cart']
+      show:
+        fields:
+          - {property: 'name'}
+          - {property: 'description', type: 'raw'}
+          - {property: 'createdAt'}
+          - {property: 'tags'}
+          - {property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+          - {property: 'cart'}
+      form:
+        fields:
+          - {type: 'group', label: 'General', css_class: 'col-md-3'}
+          - {property: 'name'}
+          - {property: 'image', type: 'App\Form\easyAdmin\AdminImageType'}
+          - {property: 'createdAt', type_options: { widget: 'single_text' }}
+          - {type: 'group', label: 'Description',icon: 'pencil', css_class: 'col-md-8'}
+          - {property: 'description', type: 'text_editor'}
+          - {type: 'group', label: 'Options',css_class: 'col-md-4'}
+          - {property: 'tags', type: 'App\Form\easyAdmin\AdminTagType', type_options: {attr: {data-role: 'tagsinput'}}}
+          - {property: 'cart'}

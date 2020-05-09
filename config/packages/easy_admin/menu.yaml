@@ -1,0 +1,14 @@
+easy_admin:
+  design:
+    form_theme: '@EasyAdmin/form/bootstrap_4.html.twig'
+    menu:
+      - label: 'Products'
+        icon: 'newspaper-o'
+        children:
+          - {entity: 'Product', icon: 'th-list', label: 'Product'}
+          - {entity: 'Image', icon: 'list', label: 'Image'}
+          - {entity: 'Tag', icon: 'list', label: 'Tag'}
+      - label: 'Carts'
+        icon: 'user'
+        children:
+          - {entity: 'Cart', icon: 'user', label: 'Cart'}

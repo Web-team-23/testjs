@@ -1,0 +1,26 @@
+easy_admin:
+  entities:
+    Image:
+      class: App\Entity\Image
+
+      list:
+        help: ' -> Product must be NULL to delete an image'
+        title: "All images"
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger disabled'}
+        fields: ['id',{ property: 'name', type: 'image', base_path: '%app.path.product_images%',label: 'Photo' },'product', 'createdAt', 'updatedAt']
+      form:
+        fields:
+          - {type: 'group', label: 'Upload image', css_class: 'col-md-4'}
+          - {property: 'imageFile', type: 'vich_image'}
+          - {type: 'group', label: 'Dates', css_class: 'col-md-3'}
+          - {property: 'createdAt', type_options: { widget: 'single_text' }}
+          - {property: 'updatedAt', type_options: { widget: 'single_text' }}
+      show:
+        fields:
+          - {property: 'name', type: 'image', base_path: '%app.path.product_images%' }
+          - {property: 'product'}
+          - {property: 'createdAt', type_options: { widget: 'single_text' }}
+          - {property: 'updatedAt', type_options: { widget: 'single_text' }}
+

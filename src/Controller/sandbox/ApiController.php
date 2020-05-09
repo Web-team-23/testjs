@@ -6,7 +6,6 @@ use App\Repository\ProductRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -16,8 +15,6 @@ class ApiController extends AbstractController
 {
   private $serializer = null;
 
-  private $route;
-
   public function __construct()
   {
     $encoders = [new JsonEncoder()];
@@ -26,7 +23,7 @@ class ApiController extends AbstractController
   }
 
   /**
-   * @Route("/admin/api/tag", name="api_tag", methods="GET")
+   * @Route("admin/api/tag", name="api_tag", methods="GET")
    * @param TagRepository $tagRepository
    * @return JsonResponse
    */
@@ -37,7 +34,7 @@ class ApiController extends AbstractController
   }
 
   /**
-   * @Route("/admin/api/product", name="api_product", methods="GET")
+   * @Route("admin/api/product", name="api_product", methods="GET")
    * @param ProductRepository $productRepository
    * @return JsonResponse
    */

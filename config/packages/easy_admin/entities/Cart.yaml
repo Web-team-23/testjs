@@ -1,0 +1,21 @@
+easy_admin:
+  entities:
+    Cart:
+      class: App\Entity\Cart
+
+      list:
+        title: "All carts"
+        collapse_actions: true
+        actions: ['show','edit','delete']
+        fields: ['id','title','products','createdAt']
+        filters: ['products']
+      form:
+        fields:
+          - {property: 'title'}
+          - {property: 'createdAt', type_options: { widget: 'single_text'}}
+          - {property: 'products'}
+      show:
+        fields:
+          - {property: 'title'}
+          - {property: 'createdAt', type_options: { widget: 'single_text' }}
+          - {property: 'products'}

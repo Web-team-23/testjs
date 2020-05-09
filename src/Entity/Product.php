@@ -5,10 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Exception;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @Vich\Uploadable()
  */
 class Product
 {
@@ -35,15 +40,24 @@ class Product
   private $createdAt;
 
   /**
-   * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="products")
+   * @ORM\Column(type="datetime")
+   */
+  private $updatedAt;
+
+  /**
+   * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="products", cascade={"persist"})
    */
   private $tags;
 
   /**
-   * @ORM\OneToOne(targetEntity="App\Entity\Image", mappedBy="product", cascade={"persist", "remove"})
-   *
+   * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="product", cascade={"persist","remove"})
    */
   private $image;
+
+  /**
+   * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+   */
+  private $imageFile;
 
   /**
    * @ORM\ManyToOne(targetEntity="App\Entity\Cart", inversedBy="products")
@@ -54,8 +68,41 @@ class Product
 
   public function __construct()
   {
-    $this->createdAt = new \DateTime();
+    $this->createdAt = new DateTime();
+    $this->updatedAt = new DateTime();
     $this->tags = new ArrayCollection();
+  }
+
+  public function getImage(): ?Image
+  {
+    return $this->image;
+  }
+
+  public function setImage( $image)
+  {
+    $this->image = $image;
+
+    return $this;
+  }
+
+  /**
+   * @param File|null $imageFile
+   * @return Product
+   * @throws Exception
+   */
+  public function setImageFile( ?File $imageFile = null)
+  {
+    $this -> imageFile = $imageFile;
+    if ($this -> imageFile instanceof UploadedFile) {
+      $this->updatedAt = new \DateTime('now');
+    }
+    return $this;
+  }
+
+
+  public function getImageFile()
+  {
+    return $this -> imageFile;
   }
 
   /**
@@ -105,22 +152,27 @@ class Product
   {
     $this->description = $description;
   }
-
-  /**
-   * @return mixed
-   */
   public function getCreatedAt(): ?\DateTimeInterface
   {
     return $this->createdAt;
   }
 
-  /**
-   * @param mixed $createdAt
-   * @return Product
-   */
   public function setCreatedAt(\DateTimeInterface $createdAt): self
   {
     $this->createdAt = $createdAt;
+
+    return $this;
+  }
+
+  public function getUpdatedAt(): ?\DateTimeInterface
+  {
+    return $this->updatedAt;
+  }
+
+  public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+  {
+    $this->updatedAt = $updatedAt;
+
     return $this;
   }
 
@@ -152,28 +204,7 @@ class Product
     return $this;
   }
 
-  public function getImage(): ?Image
-  {
-    return $this->image;
-  }
 
-  public function setImage(?Image $image): self
-  {
-    $this->image = $image;
-
-    // set (or unset) the owning side of the relation if necessary
-    $newProduct = null === $image ? null : $this;
-    if ($image->getProduct() !== $newProduct) {
-      $image->setProduct($newProduct);
-    }
-
-    return $this;
-  }
-
-
-  /**
-   * @return mixed
-   */
   public function __toString()
   {
     return $this->name;
